@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💬 Demo Chatbot Ecommerce - Simulación en Next.js
 
-## Getting Started
+Este repositorio contiene una versión demo de un chatbot desarrollada con **Next.js**, simulando una interacción típica entre un cliente y un sistema automatizado de ecommerce. Este proyecto tiene fines demostrativos y puede servir como base para integraciones más avanzadas con agentes reales o asistentes de IA.
 
-First, run the development server:
+Se encuentra deployado en Vercel [chatbot_demo]()
+
+---
+
+## 🚀 Tecnologías Utilizadas
+
+- [Next.js](https://nextjs.org/)
+- [React Markdown](https://github.com/remarkjs/react-markdown)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Heroicons React](https://github.com/tailwindlabs/heroicons)
+- [AI SDK (Vercel)](https://sdk.vercel.ai/docs)
+- [OpenAI API](https://platform.openai.com/)
+
+---
+
+## 🛠️ Requisitos Previos
+
+Antes de comenzar, asegúrate de tener instalado lo siguiente en tu entorno:
+
+- Node.js >= 18.x
+- npm >= 9.x
+
+---
+
+## 🧪 Instalación y Ejecución Local
+
+Sigue estos pasos para clonar y ejecutar el proyecto localmente:
+
+### 1. Clona el repositorio
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Halsey26/chat_demo_ecommerce.git
+cd chat_demo_ecommerce
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1. Instala las dependencias necesarias
+Si creas un proyecto next.js desde cero.
+- En la terminal de tu proyecto:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install react-markdown framer-motion @heroicons/react ai @ai-sdk/openai
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Si clonas este repositorio:
+- También puedes usar ```npm install``` directamente si el archivo package.json ya tiene estas dependencias listadas.
 
-## Learn More
+### 3. Crea el archivo .env.local
+En la raíz del proyecto, crea un archivo llamado ```.env.local``` y coloca dentro tu clave de API de OpenAI:
 
-To learn more about Next.js, take a look at the following resources:
+```
+OPENAI_API_KEY=sk-...
+```
+⚠️ Nunca compartas públicamente tu clave de API.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ ### 4. Ejecuta el proyecto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+npm run dev
+```
+Esto iniciará el servidor en modo desarrollo. Abre tu navegador en: http://localhost:3000/chat
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Estructura General del Proyecto
+``` c#
+├── app/
+│   └── chat/
+│       └── page.tsx       # Página principal del chatbot
+├── public/                # Recursos estáticos (imágenes, logos, etc.)
+├── .env.local             # Clave de OpenAI (no se sube al repositorio)
+├── package.json           # Dependencias del proyecto
+└── README.md              # Documentación del proyecto
+```
+
+--- 
+
+## Notas Adicionales
+- Si deseas conocer más sobre la instalación o crear un proyectos de Next.js desde cero [set_up_nextjs]()
+- Actualmente se simula la lógica conversacional con conexión a la API de OpenAI. Se puede adaptar para conectar con un backend propio.

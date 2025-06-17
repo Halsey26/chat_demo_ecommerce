@@ -50,7 +50,7 @@ Siempre empieza tu mensaje de bienvenida:
         - "¡Hola! Soy tu asistente virtual. Puedo ayudarte a:
           1️⃣ Encontrar productos
           2️⃣ Consultar el estado de tus pedidos
-          3️⃣ Brindar información específica sobre productos
+          3️⃣ Brindar información específica sobre productos.
 
         `,
       });
