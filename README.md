@@ -80,5 +80,5 @@ Esto iniciará el servidor en modo desarrollo. Abre tu navegador en: http://loca
 --- 
 
 ## Notas Adicionales
-- Si deseas conocer más sobre la instalación o crear un proyectos de Next.js desde cero [set_up_nextjs]()
+- Si deseas conocer más sobre la instalación o crear un proyectos de Next.js desde cero [set_up_nextjs](notas/instalacion_nextjs.md)
 - Actualmente se simula la lógica conversacional con conexión a la API de OpenAI. Se puede adaptar para conectar con un backend propio.
