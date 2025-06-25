@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   const userMessage = [...messages].reverse().find( (msg) => msg.role == 'user' )?.content || "";
 
   //cadena vacia al inicio del bot
-  let finalBotMessage = "";
+  // let finalBotMessage = "";
 
   return createDataStreamResponse({
     execute: async (dataStream) => {
