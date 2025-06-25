@@ -2,6 +2,7 @@
 
 // permite que el id del usuario se genere solo una vez por navegador
 export function getOrCreateUserId(){
+    if (typeof window === 'undefined') return 'anon'; // fallback para SSR
     let id = localStorage.getItem("user_id");
     // si no hay user_id
     if (!id) {
@@ -13,6 +14,8 @@ export function getOrCreateUserId(){
 
 // Permite que se genere por sesión
 export function getOrCreateConversationId (){
+      if (typeof window === 'undefined') return crypto.randomUUID(); // fallback para SSR
+
     let id = sessionStorage.getItem("conversation_id");
     // si no hay user_id
     if (!id) {
