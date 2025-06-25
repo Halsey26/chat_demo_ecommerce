@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import { ChatBubbleLeftIcon } from '@heroicons/react/24/solid';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
+import {getOrCreateUserId, getOrCreateConversationId} from '@/lib/id_functions';
 
 export default function ChatPage() {
   const {
@@ -13,7 +14,14 @@ export default function ChatPage() {
     handleInputChange,
     handleSubmit,
     isLoading,
-  } = useChat({ api: '/api/chat' });
+  } = useChat({ 
+    api: '/api/chat' , 
+    body: {
+      id_usuario: getOrCreateUserId() ,
+      id_conversacion: getOrCreateConversationId() ,
+    } ,
+  
+  });
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);

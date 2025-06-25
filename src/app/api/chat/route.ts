@@ -9,9 +9,18 @@ import {
 // Opcional: límite de streaming en segundos
 export const maxDuration = 30;
 
+// Funcion del chatbot
 export async function POST(req: Request) {
   // Recibimos solo los mensajes de la petición
-  const { messages }: { messages: Message[] } = await req.json();
+  const { messages , id_usuario , id_conversacion}: {
+     messages: Message[]; id_usuario:string; id_conversacion:string
+    } = await req.json();
+
+  // Extraemos el ultimo mensaje del usuario
+  const userMessage = [...messages].reverse().find( (msg) => msg.role == 'user' )?.content || "";
+
+  //cadena vacia al inicio del bot
+  let finalBotMessage = "";
 
   return createDataStreamResponse({
     execute: async (dataStream) => {
@@ -53,10 +62,52 @@ Siempre empieza tu mensaje de bienvenida:
           3️⃣ Brindar información específica sobre productos.
 
         `,
+        // onToken: (token) => {
+        //   console.log("token recibido:", token);
+        //   finalBotMessage += token;
+        // },
       });
 
       // Fusionamos la respuesta en el stream
       result.mergeIntoDataStream(dataStream);
+
+      //variables de ID
+      // const idUsuario = crypto.randomUUID();
+      // const idConversacion= crypto.randomUUID();
+
+      // esperamos a que se genere la respuesta del bot
+      const finalBotMessage = await result.text;
+
+      //  Al terminar el stream, 
+      // usuario
+      await fetch("http://localhost:8000/logs", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          id_conversacion: id_conversacion,
+          id_usuario:id_usuario,
+          rol:'user',
+          mensaje:userMessage,
+          fecha: new Date().toISOString(),
+        }),
+      });
+      
+      // bot
+      await fetch("http://localhost:8000/logs", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          id_conversacion: id_conversacion,
+          id_usuario:'bot',
+          rol:'bot',
+          mensaje:finalBotMessage,
+          fecha: new Date().toISOString(),
+        }),
+      });
+      console.log('Enviado a FastApi')
+      // console.log("User final:", userMessage);
+      // console.log("Bot final:", finalBotMessage);
+
     },
   });
 }
